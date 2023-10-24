@@ -32,16 +32,16 @@
     }
 
 
-    public static int Divide(int num1, int num2)
+    public static int Divide(int dividend, int divisor)
     {
 
-        if (num2 == 0)
+        if (divisor == 0)
         {
             while (true)
             {
                 Console.WriteLine("Division by zero is not allowed. Please enter a non-zero divisor: ");
                 string divisorInput = Console.ReadLine();
-                if (int.TryParse(divisorInput, out num2) && num2 != 0)
+                if (int.TryParse(divisorInput, out divisor) && divisor != 0)
                 {
                     break;
                 }
@@ -55,21 +55,21 @@
         int total = 0;
         int sign = 1;
 
-        if (num1 < 0)
+        if (dividend < 0)
         {
-            num1 = -num1;
+            dividend = -dividend;
             sign = -sign;
         }
 
-        if (num2 < 0)
+        if (divisor < 0)
         {
-            num2 = -num2;
+            divisor = -divisor;
             sign = -sign;
         }
 
-        while (num1 >= num2)
+        while (dividend >= divisor)
         {
-            num1 -= num2;
+            dividend -= divisor;
             total++;
         }
 
@@ -79,30 +79,6 @@
         }
 
         return total;
-    }
-
-    static int GetValidNumber(string prompt)
-    {
-        int number;
-        bool validInput = false;
-
-        do
-        {
-            Console.Write(prompt);
-            string input = Console.ReadLine();
-
-
-            if (int.TryParse(input, out number))
-            {
-                validInput = true;
-            }
-            else
-            {
-                Console.WriteLine("Invalid input. Please enter a valid number.");
-            }
-        } while (!validInput);
-
-        return number;
     }
 
     public static void Main()
@@ -122,8 +98,8 @@
                 }
                 else
                 {
-                    int n1 = GetValidNumber("Enter a number: ");
-                    int n2 = GetValidNumber("Enter another number: ");
+                    int n1 = UserInputValidator.GetValidNumber("Enter a number: ");
+                    int n2 = UserInputValidator.GetValidNumber("Enter another number: ");
 
                     switch (operation)
                     {
